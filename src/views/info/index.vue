@@ -1,0 +1,341 @@
+<template>
+  <div class="info">
+    <!-- 轮播 -->
+    <div class="swiper">
+      <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+        <van-swipe-item v-for="item in info.gallery" :key="item.id">
+          <img :src="item.img_url" alt="" />
+        </van-swipe-item>
+      </van-swipe>
+    </div>
+    <!-- 优势服务 -->
+    <div class="notice">
+      <div>
+        <img src="/images/dot.png" alt="" style="display: inline-block" />
+        <span>30天无忧退货</span>
+      </div>
+      <div>
+        <img src="/images/dot.png" alt="" style="display: inline-block" />
+        <span>48小时快速退款</span>
+      </div>
+      <div>
+        <img src="/images/dot.png" alt="" style="display: inline-block" />
+        <span>满88元免邮费</span>
+      </div>
+    </div>
+    <!-- 商品名称等内容 -->
+    <div class="header">
+      <!-- 👉注意报错 vue 在渲染的时候 首先会编译模板 -->
+      <!-- 也可以用v-if v-if是惰性的：如果在初始渲染时条件为假，则什么也不做——直到条件第一次变为真时，才会开始渲染条件块。-->
+      <p>{{ info.info && info.info.name }}</p>
+      <p>{{ info.info && info.info.goods_brief }}</p>
+      <p>￥{{ info.info && info.info.retail_price }}</p>
+    </div>
+    <!-- 选择规格 数量 -->
+    <div class="section">
+      <van-cell is-link @click="showPopup">请选择规格数量</van-cell>
+      <van-popup
+        closeable
+        position="bottom"
+        :style="{ height: '30%' }"
+        v-model="show"
+      >
+        <div class="card">
+          <div class="left">
+            <img :src="info.info && info.info.primary_pic_url" alt="" />
+          </div>
+          <div class="right">
+            <p>价格￥{{ info.info && info.info.retail_price }}</p>
+            <p>请选择数量</p>
+          </div>
+        </div>
+        <div class="stepper">
+          <p>数量</p>
+          <van-stepper v-model="value" />
+        </div>
+      </van-popup>
+    </div>
+    <!-- 商品参数 -->
+    <div class="parameter">
+      <p class="title">商品参数</p>
+      <div class="info" v-for="(item, index) in info.attribute" :key="index">
+        <p>{{ item.name }}:</p>
+        <p>{{ item.value }}</p>
+      </div>
+    </div>
+    <!-- 商品详情-->
+    <div class="desc">
+      <p><br /></p>
+      <p>
+        <img
+          src="http://yanxuan.nosdn.127.net/34a6a0daa3f7a397a38aad14cb9e90fa.jpg"
+          _src="http://yanxuan.nosdn.127.net/34a6a0daa3f7a397a38aad14cb9e90fa.jpg"
+        /><br />
+      </p>
+      <p>
+        <img
+          src="http://yanxuan.nosdn.127.net/76637af0eec246b318cb129b768de637.jpg"
+          _src="http://yanxuan.nosdn.127.net/76637af0eec246b318cb129b768de637.jpg"
+          style=""
+        />
+      </p>
+      <p>
+        <img
+          src="http://yanxuan.nosdn.127.net/18fee22626e61fc1d1a01916914016ba.jpg"
+          _src="http://yanxuan.nosdn.127.net/18fee22626e61fc1d1a01916914016ba.jpg"
+          style=""
+        />
+      </p>
+      <p>
+        <img
+          src="http://yanxuan.nosdn.127.net/91f57a9bb142e1c1e2ff0bbea6f9af96.jpg"
+          _src="http://yanxuan.nosdn.127.net/91f57a9bb142e1c1e2ff0bbea6f9af96.jpg"
+          style=""
+        />
+      </p>
+      <p>
+        <img
+          src="http://yanxuan.nosdn.127.net/252d80fd75eb1254d746d0b57c267650.jpg"
+          _src="http://yanxuan.nosdn.127.net/252d80fd75eb1254d746d0b57c267650.jpg"
+          style=""
+        />
+      </p>
+      <p>
+        <img
+          src="http://yanxuan.nosdn.127.net/4b07697992a2b14de6fd0a5811936d71.jpg"
+          _src="http://yanxuan.nosdn.127.net/4b07697992a2b14de6fd0a5811936d71.jpg"
+          style=""
+        />
+      </p>
+      <p>
+        <img
+          src="http://yanxuan.nosdn.127.net/c499439d6081bb4e836955b7514c1b96.jpg"
+          _src="http://yanxuan.nosdn.127.net/c499439d6081bb4e836955b7514c1b96.jpg"
+          style=""
+        />
+      </p>
+      <p>
+        <img
+          src="http://yanxuan.nosdn.127.net/bed437fdc091d020a8f805bcc8830bd8.jpg"
+          _src="http://yanxuan.nosdn.127.net/bed437fdc091d020a8f805bcc8830bd8.jpg"
+          style=""
+        />
+      </p>
+      <p>
+        <img
+          src="http://yanxuan.nosdn.127.net/0fc5febdb817abd7a1040bab03f048b7.jpg"
+          _src="http://yanxuan.nosdn.127.net/0fc5febdb817abd7a1040bab03f048b7.jpg"
+          style=""
+        />
+      </p>
+      <p>
+        <img
+          src="http://yanxuan.nosdn.127.net/a0417b3986c9dc082124fcc360390021.jpg"
+          _src="http://yanxuan.nosdn.127.net/a0417b3986c9dc082124fcc360390021.jpg"
+          style=""
+        />
+      </p>
+      <p>
+        <img
+          src="http://yanxuan.nosdn.127.net/a5c9d24c652d4dee7946ef925105f3f2.jpg"
+          _src="http://yanxuan.nosdn.127.net/a5c9d24c652d4dee7946ef925105f3f2.jpg"
+          style=""
+        />
+      </p>
+      <p>
+        <img
+          src="http://yanxuan.nosdn.127.net/b10272c58f95dd6737ce1cd41452a21d.jpg"
+          _src="http://yanxuan.nosdn.127.net/b10272c58f95dd6737ce1cd41452a21d.jpg"
+          style=""
+        />
+      </p>
+      <p>
+        <img
+          src="http://yanxuan.nosdn.127.net/510c6ef36760238b38ed59cd6e47a21f.png"
+          _src="http://yanxuan.nosdn.127.net/510c6ef36760238b38ed59cd6e47a21f.png"
+          style=""
+        />
+      </p>
+      <p>
+        <img
+          src="http://yanxuan.nosdn.127.net/6371348b917c021c55dc393fc59d4d28.png"
+          _src="http://yanxuan.nosdn.127.net/6371348b917c021c55dc393fc59d4d28.png"
+          style=""
+        />
+      </p>
+      <p>
+        <img
+          src="http://yanxuan.nosdn.127.net/de4079b128e57c5c0fa8a8177e9bc6e7.png"
+          _src="http://yanxuan.nosdn.127.net/de4079b128e57c5c0fa8a8177e9bc6e7.png"
+          style=""
+        />
+      </p>
+      <p>
+        <img
+          src="http://yanxuan.nosdn.127.net/160966fbc772787f824dc1dbd5afb16d.png"
+          _src="http://yanxuan.nosdn.127.net/160966fbc772787f824dc1dbd5afb16d.png"
+          style=""
+        />
+      </p>
+      <p>
+        <img
+          src="http://yanxuan.nosdn.127.net/bb3c8d3f10f2aca0908871c8e598aa0e.jpg"
+          _src="http://yanxuan.nosdn.127.net/bb3c8d3f10f2aca0908871c8e598aa0e.jpg"
+        />
+      </p>
+      <p><br /></p>
+    </div>
+    <!-- 常见问题 -->
+    <div class="issue">
+      <div class="title">
+        <p class="line"></p>
+        <p class="text">常见问题</p>
+        <p class="line"></p>
+      </div>
+      <div class="issueInfo" v-for="item in info.issue" :key="item.id">
+        <div class="q-box">
+          <p class="dot"></p>
+          <p class="question">{{ item.question }}</p>
+        </div>
+        <p class="answer">{{ item.answer }}</p>
+      </div>
+    </div>
+    <!-- 大家都在看list -->
+    <div class="productList">
+      <div class="title">
+        <p class="line"></p>
+        <p class="text">大家都在看</p>
+        <p class="line"></p>
+      </div>
+      <div class="list">
+        <!-- 地址栏传参 -->
+        <div
+          class="item"
+          v-for="item in info.productList"
+          :key="item.id"
+          @click="refresh(item.id)"
+        >
+          <img :src="item.list_pic_url" alt="" />
+          <p>{{ item.name }}</p>
+          <p class="price">{{ item.retail_price }}￥</p>
+        </div>
+      </div>
+    </div>
+    <!-- 底部栏 -->
+    <div class="footer">
+      <ul>
+        <li>
+          <!-- ⚡vant 组件里面点击事件加native 实现原生点击事件 -->
+          <van-icon
+            @click.native="collected"
+            :color="info.collected ? '#b4282d' : ''"
+            name="star-o"
+            size="24"
+          />
+        </li>
+        <li>
+          <router-link to="/cart">
+            <van-icon
+              :badge="info.allnumber"
+              name="shopping-cart-o"
+              size="24"
+            />
+          </router-link>
+        </li>
+        <li @click="showPopup">立即购买</li>
+        <li @click="showPopup">加入购物车</li>
+      </ul>
+    </div>
+  </div>
+</template>
+
+<script>
+import { detailaction, addcollect, addCart } from "@/api/info";
+import { Toast } from "vant";
+
+export default {
+  data() {
+    return {
+      info: {},
+      show: false,
+      value: 1,
+    };
+  },
+  // 解决复用组件 路由变化
+  // 1.watch 监听 2.路由守卫 3.router-view绑定key(让vue不在复用对应组件)
+  // watch: {
+  //   $route(to, from) {
+  //     detailaction({
+  //       id: to.query.id,
+  //       openId: localStorage.getItem("openId"),
+  //     }).then((res) => {
+  //       console.log(res);
+  //       this.info = res;
+  //     });
+  //   },
+  // },
+  computed: {},
+  created() {
+    this.init();
+  },
+  mounted() {},
+  methods: {
+    async init() {
+      //商品详情
+      var res = await detailaction({
+        id: this.$route.query.id,
+        openId: localStorage.getItem("openId"),
+      });
+      this.info = res;
+    },
+    // 收藏
+    collected() {
+      addcollect({
+        goodsId: this.$route.query.id,
+        openId: localStorage.getItem("openId"),
+      }).then((res) => {
+        console.log(res);
+        //👉当接口调取成功之后
+        //需初始化 再获取页面最新的数据
+        this.init();
+      });
+    },
+    //控制弹出层
+    async showPopup() {
+      //1.控制弹出层显示/隐藏
+      // this.show = !this.show;
+      //2.添加购物车
+      if (this.show) {
+        await addCart({
+          goodsId: this.$route.query.id,
+          number: this.value,
+          openId: localStorage.getItem("openId"),
+        });
+        await this.init();
+        Toast({
+          type: "success",
+          message: "添加成功",
+          duration: 2000,
+        });
+      } else {
+        this.show = !this.show;
+      }
+    },
+    refresh(id) {
+      // 4.再调取接口
+      detailaction({
+        id: id,
+        openId: localStorage.getItem("openId"),
+      }).then((res) => {
+        console.log(res);
+        this.info = res;
+      });
+      // this.$router.push(`/info?id=${id}`);
+    },
+  },
+};
+</script>
+
+<style scoped lang="scss">
+@import "./index.scss";
+</style>
