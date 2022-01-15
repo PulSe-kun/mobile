@@ -1,0 +1,90 @@
+.cart {
+    .notice {
+        padding: 20px 0;
+        display: flex;
+        justify-content: space-around;
+        background-color: #f4f4f4;
+        font-size: 12px;
+        div {
+            display: inline-block;
+            img {
+                width: 8px;
+                margin-right: 2px;
+            }
+        }
+    }
+    .list {
+        background: #fff;
+        margin-bottom: 55px;
+        padding: 0 10px;
+        font-size: 12px;
+        .item {
+            padding: 10px 0;
+            border-bottom: 0.5px solid #f4f4f4;
+            height: 82px;
+            .card {
+                display: flex;
+                justify-content: space-between;
+                .left {
+                    display: flex;
+                    align-items: center;
+                    img {
+                        display: block;
+                        width: 62px;
+                        height: 62px;
+                        margin-left: 10px;
+                        background: #f4f4f4;
+                    }
+                    .info {
+                        padding: 10px;
+                        p {
+                            width: 100%;
+                            line-height: 40px;
+                        }
+                    }
+                }
+            }
+            .right {
+                line-height: 60px;
+                padding: 10px;
+            }
+            .delete-button {
+                height: 100px;
+                background-color: #b4282d;
+            }
+        }
+    }
+    .tap {
+        position: fixed;
+        left: 0;
+        width: 100%;
+        bottom: 50px;
+        background-color: #fff;
+        height: 50px;
+        line-height: 50px;
+        font-size: 12px;
+        .van-checkbox {
+            float: left;
+            padding: 15px;
+        }
+        .tap-right {
+            float: right;
+            width: 200px;
+            text-align: center;
+            font-weight:bold;
+            p:first-child {
+                float: left;
+                width: 80px;
+                color: #b4282d;
+                background-color: #fff;
+            }
+            .buy {
+                font-size: 14px;
+                float: right;
+                width: 120px;
+                color: #fff;
+                background-color: #b4282d;
+            }
+        }
+    }
+}
