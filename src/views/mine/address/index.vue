@@ -4,15 +4,15 @@
       <div class="person" v-for="item in list" :key="item.id">
         <div>
           <p class="name">{{ item.name }}</p>
-          <p class="default">默认</p>
+          <p class="default" v-if="item.is_default != 0 ? true : false">默认</p>
         </div>
         <div class="info" @click="goOrder(item)">
           <p>{{ item.mobile }}</p>
           <p>{{ item.address }}</p>
         </div>
         <div class="icon" @click="edit(item.id)"></div>
-        <div class="delete">
-          <van-icon name="delete-o" size="26px" @click="del(item.id)" />
+        <div class="delete"  @click="del(item.id)" >
+          <van-icon name="delete-o" size="26px"/>
         </div>
       </div>
     </div>
@@ -32,11 +32,21 @@ export default {
       list: [],
     };
   },
+  // watch: {
+  //   $route() {
+  //
+  //   },
+  // },
   computed: {},
   created() {
     this.init();
   },
-  mounted() {},
+  mounted() {
+    this.init()
+  },
+  // activated() {
+  //   this.init()
+  // },
   methods: {
     init() {
       getListAction({
@@ -46,6 +56,10 @@ export default {
         this.list = res.data;
       });
     },
+    //根据条件添加类名
+    // active() {
+    //   return this.list.is_default == 1 ? "default" : "";
+    // },
     // onAdd() {
     //    this.$toast('新增地址');
     // },
@@ -107,7 +121,6 @@ export default {
         text-overflow: ellipsis;
         white-space: nowrap;
         align-self: flex-start;
-        text-align: center;
       }
 
       .default {
@@ -140,7 +153,7 @@ export default {
       }
 
       .delete {
-        width: 30px;
+        width: 40px;
       }
     }
   }

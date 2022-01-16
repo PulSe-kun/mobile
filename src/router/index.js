@@ -42,12 +42,15 @@ const routes = [
   {
     path: '/topic',
     name: 'Topic',
-    component: () => import('@/views/topic/index.vue')
+    component: () => import('@/views/topic/index.vue'),
+    meta: {
+      keepAlive: true // 需要被缓存
+    }
   },
   {
-    path: '/topicInfo',
-    name: 'TopicInfo',
-    component: () => import('@/views/topic/topicInfo/index.vue')
+    path: '/topic/detailaction',
+    name: 'detailAction',
+    component: () => import('@/views/topic/detailaction/index.vue')
   },
   {
     path: '/category',
@@ -86,7 +89,7 @@ const routes = [
   {
     path: '/mine/address',
     name: 'Address',
-    component: () => import('@/views/mine/address/index.vue')
+    component: () => import('@/views/mine/address/index.vue'),
   },
   {
     path: '/mine/address/addressEdit',

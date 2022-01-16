@@ -75,7 +75,7 @@
             }
         }
     }
-    .van-popup{
+    .van-popup {
         bottom: 50px;
     }
     .parameter {
@@ -107,7 +107,8 @@
         }
     }
     .desc {
-        img {
+        overflow: hidden;
+        ::v-deep img {
             display: block;
             width: 100%;
         }
@@ -222,7 +223,7 @@
         left: 0;
         width: 100%;
         background-color: #fff;
-        z-index:9999;
+        z-index: 9999;
         ul {
             display: flex;
             justify-content: space-between;

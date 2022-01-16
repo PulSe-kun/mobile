@@ -8,7 +8,7 @@
       :immediate-check="false"
       @load="onLoad"
     >
-      <div class="topicList" v-for="item in list" :key="item.id">
+      <div class="topicList" v-for="item in list" :key="item.id" @click="goInfo(item.id)">
         <img :src="item.scene_pic_url" alt="" />
         <p class="title">{{ item.title }}</p>
         <p class="info">{{ item.subtitle }}</p>
@@ -34,7 +34,8 @@ export default {
   created() {
     this.init();
   },
-  mounted() {},
+  mounted() {
+  },
   methods: {
     init() {
       listaction({
@@ -61,9 +62,10 @@ export default {
       this.init();
     },
 
-    //  goInfo(id) {
-    //   this.$router.push(`/topic/topicInfo?id=${id}`);
-    // },
+     goInfo(id) {
+      this.$router.push(`/topic/detailaction?id=${id}`);
+      // this.$router.push('/topic/topicList');
+    },
   },
 };
 </script>

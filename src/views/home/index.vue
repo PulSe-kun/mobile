@@ -95,7 +95,7 @@
         <span></span>
       </div>
       <ul class="topicList">
-        <li v-for="item in bannerInfo.topicList" :key="item.id">
+        <li v-for="item in bannerInfo.topicList" :key="item.id" @click="goInfo(item.id)">
           <img :src="item.item_pic_url" alt="" />
           <div>
             <span class="desc">{{ item.title }}</span>
@@ -183,7 +183,12 @@ export default {
       });
     });
   },
-  methods: {},
+  methods: {
+    //跳转
+    goInfo(id){
+      this.$router.push(`/topic/detailaction?id=${id}`)
+    }
+  },
 };
 </script>
 <style scoped lang="scss">

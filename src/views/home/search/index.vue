@@ -14,7 +14,7 @@
         <p>历史记录</p>
         <van-icon name="delete-o" @click="del" size="20" />
         <ul>
-          <li v-for="item in initDate.historyData" :key="item.id">
+          <li v-for="item in initDate.historyData" :key="item.id" @click="goInfo(item.keyword)">
             {{ item.keyword }}
           </li>
         </ul>
@@ -52,7 +52,6 @@
           class="item"
           v-for="item in goodsList"
           :key="item.id"
-          @click="show(item.name)"
         >
           <div><img :src="item.list_pic_url" alt="" /></div>
           <p>{{ item.name }}</p>
@@ -151,8 +150,20 @@ export default {
         openId: localStorage.getItem("openId"),
       });
     },
-    show() {
-      //后续
+    goInfo(val) {
+       // 需要传递参数
+      this.current = "goods"; //赋值 对应商品
+      helperaction({
+        keyword: val, //⚡就是item.name
+        order: "",
+      }).then((res) => {
+        console.log(res);
+        this.goodsList = res.keywords;
+      });
+      addhistoryaction({
+        keyword: val,
+        openId: localStorage.getItem("openId"),
+      });
     },
   },
 };

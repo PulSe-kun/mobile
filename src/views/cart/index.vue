@@ -78,6 +78,8 @@ export default {
     //👉计算属性 当需要知道某些数据的变化;需要返回一个新的数据就用它
     isSelectedAll: {
       get() {
+        //👉如果是空数组,选项为false
+        if(this.list.length==0) return false;
         // ⚡用于读取
         return this.list.every((ele) => ele.isChecked);
       },

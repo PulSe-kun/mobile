@@ -64,126 +64,8 @@
       </div>
     </div>
     <!-- 商品详情-->
-    <div class="desc">
-      <p><br /></p>
-      <p>
-        <img
-          src="http://yanxuan.nosdn.127.net/34a6a0daa3f7a397a38aad14cb9e90fa.jpg"
-          _src="http://yanxuan.nosdn.127.net/34a6a0daa3f7a397a38aad14cb9e90fa.jpg"
-        /><br />
-      </p>
-      <p>
-        <img
-          src="http://yanxuan.nosdn.127.net/76637af0eec246b318cb129b768de637.jpg"
-          _src="http://yanxuan.nosdn.127.net/76637af0eec246b318cb129b768de637.jpg"
-          style=""
-        />
-      </p>
-      <p>
-        <img
-          src="http://yanxuan.nosdn.127.net/18fee22626e61fc1d1a01916914016ba.jpg"
-          _src="http://yanxuan.nosdn.127.net/18fee22626e61fc1d1a01916914016ba.jpg"
-          style=""
-        />
-      </p>
-      <p>
-        <img
-          src="http://yanxuan.nosdn.127.net/91f57a9bb142e1c1e2ff0bbea6f9af96.jpg"
-          _src="http://yanxuan.nosdn.127.net/91f57a9bb142e1c1e2ff0bbea6f9af96.jpg"
-          style=""
-        />
-      </p>
-      <p>
-        <img
-          src="http://yanxuan.nosdn.127.net/252d80fd75eb1254d746d0b57c267650.jpg"
-          _src="http://yanxuan.nosdn.127.net/252d80fd75eb1254d746d0b57c267650.jpg"
-          style=""
-        />
-      </p>
-      <p>
-        <img
-          src="http://yanxuan.nosdn.127.net/4b07697992a2b14de6fd0a5811936d71.jpg"
-          _src="http://yanxuan.nosdn.127.net/4b07697992a2b14de6fd0a5811936d71.jpg"
-          style=""
-        />
-      </p>
-      <p>
-        <img
-          src="http://yanxuan.nosdn.127.net/c499439d6081bb4e836955b7514c1b96.jpg"
-          _src="http://yanxuan.nosdn.127.net/c499439d6081bb4e836955b7514c1b96.jpg"
-          style=""
-        />
-      </p>
-      <p>
-        <img
-          src="http://yanxuan.nosdn.127.net/bed437fdc091d020a8f805bcc8830bd8.jpg"
-          _src="http://yanxuan.nosdn.127.net/bed437fdc091d020a8f805bcc8830bd8.jpg"
-          style=""
-        />
-      </p>
-      <p>
-        <img
-          src="http://yanxuan.nosdn.127.net/0fc5febdb817abd7a1040bab03f048b7.jpg"
-          _src="http://yanxuan.nosdn.127.net/0fc5febdb817abd7a1040bab03f048b7.jpg"
-          style=""
-        />
-      </p>
-      <p>
-        <img
-          src="http://yanxuan.nosdn.127.net/a0417b3986c9dc082124fcc360390021.jpg"
-          _src="http://yanxuan.nosdn.127.net/a0417b3986c9dc082124fcc360390021.jpg"
-          style=""
-        />
-      </p>
-      <p>
-        <img
-          src="http://yanxuan.nosdn.127.net/a5c9d24c652d4dee7946ef925105f3f2.jpg"
-          _src="http://yanxuan.nosdn.127.net/a5c9d24c652d4dee7946ef925105f3f2.jpg"
-          style=""
-        />
-      </p>
-      <p>
-        <img
-          src="http://yanxuan.nosdn.127.net/b10272c58f95dd6737ce1cd41452a21d.jpg"
-          _src="http://yanxuan.nosdn.127.net/b10272c58f95dd6737ce1cd41452a21d.jpg"
-          style=""
-        />
-      </p>
-      <p>
-        <img
-          src="http://yanxuan.nosdn.127.net/510c6ef36760238b38ed59cd6e47a21f.png"
-          _src="http://yanxuan.nosdn.127.net/510c6ef36760238b38ed59cd6e47a21f.png"
-          style=""
-        />
-      </p>
-      <p>
-        <img
-          src="http://yanxuan.nosdn.127.net/6371348b917c021c55dc393fc59d4d28.png"
-          _src="http://yanxuan.nosdn.127.net/6371348b917c021c55dc393fc59d4d28.png"
-          style=""
-        />
-      </p>
-      <p>
-        <img
-          src="http://yanxuan.nosdn.127.net/de4079b128e57c5c0fa8a8177e9bc6e7.png"
-          _src="http://yanxuan.nosdn.127.net/de4079b128e57c5c0fa8a8177e9bc6e7.png"
-          style=""
-        />
-      </p>
-      <p>
-        <img
-          src="http://yanxuan.nosdn.127.net/160966fbc772787f824dc1dbd5afb16d.png"
-          _src="http://yanxuan.nosdn.127.net/160966fbc772787f824dc1dbd5afb16d.png"
-          style=""
-        />
-      </p>
-      <p>
-        <img
-          src="http://yanxuan.nosdn.127.net/bb3c8d3f10f2aca0908871c8e598aa0e.jpg"
-          _src="http://yanxuan.nosdn.127.net/bb3c8d3f10f2aca0908871c8e598aa0e.jpg"
-        />
-      </p>
-      <p><br /></p>
+    <div class="desc" v-html="info.info &&info.info.goods_desc">
+      <!-- {{ info.info && info.info.goods_desc }} -->
     </div>
     <!-- 常见问题 -->
     <div class="issue">
@@ -331,6 +213,22 @@ export default {
         this.info = res;
       });
       // this.$router.push(`/info?id=${id}`);
+    },
+    getDesc() {
+      var htmlStr = "";
+      for (var i = 0; i < data.length; i++) {
+        var itemData = data[i];
+        htmlStr += `<p></p>
+                <a href="${itemData.href}">
+                    <div class="card">
+                        <img class="icon" src="icon/${itemData.img}" alt="" class="icon">
+                    </div>
+                    <p class="title">${itemData.title}</p>
+                    <p class="desc">${itemData.desc}</p>
+                </a>
+            </li>`;
+      }
+      ul.innerHTML = htmlStr;
     },
   },
 };
